@@ -31,6 +31,3 @@ public class Gaulois {
 	//comme Astérix c’est sûrement que vous avez écrit System.out.println(asterix);
 	//au lieu de System.out.println(asterix.getNom());, et qu'il n'y a pas eu réécriture
 	//du toString dans la classe."
-	
-
-}
