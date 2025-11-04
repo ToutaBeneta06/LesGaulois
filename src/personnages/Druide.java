@@ -1,43 +1,45 @@
 package personnages;
 
 public class Druide {
-    private String nom;
-    private int force;
-    private int nbPotions;
-    private int effetPotion;
+	private String nom;
+	private int force;
+	private Chaudron chaudron;
 
-    public Druide(String nom, int force) {
-        this.nom = nom;
-        this.force = force;
-        this.nbPotions = 0;
-        this.effetPotion = 1;
-    }
+	public Druide(String nom, int force) {
+		this.nom = nom;
+		this.force = force;
+		this.chaudron = new Chaudron();
+	}
 
-    public String getNom() {
-        return nom;
-    }
+	public String getNom() {
+		return nom;
+	}
 
-    public void parler() {
-        System.out.println("Je suis le Druide " + nom + ".");
-    }
+	public void parler(String texte) {
+		System.out.println(prendreParole() + "« " + texte + " »");
+	}
 
-    public void prendreParole() {
-        System.out.println("Le Druide " + nom + " : \"J'ai concocté " + nbPotions + " doses de potion magique. Elle a une force de " + effetPotion + ".\"");
-    }
+	private String prendreParole() {
+		return "Le Druide " + nom + " : ";
+	}
 
-    public void fabriquerPotion(int nb, int effet) {
-        nbPotions += nb;
-        effetPotion = effet;
-        System.out.println("Le Druide " + nom + " : \"J'ai concocté " + nb + " doses de potion magique. Elle a une force de " + effet + ".\"");
-    }
+	public void fabriquerPotion(int quantite, int forcePotion) {
+		parler("J'ai concocté " + nbDoses + " doses de potion magique. Elle a une force de " + forcePotion + ".");
+		chaudron.remplirChaudron(nbDoses, forcePotion);
+	}
 
-    public void boosterGaulois(Gaulois gaulois) {
-        if (nbPotions > 0) {
-            gaulois.boosterPotion(effetPotion);
-            nbPotions--;
-            System.out.println("Le Druide " + nom + " : \"Tiens " + gaulois.getNom() + ", un peu de potion magique.\"");
-        } else {
-            System.out.println("Le Druide " + nom + " : \"Désolé, plus de potion magique !\"");
-        }
-    }
+	public void boosterGaulois(Gaulois gaulois) {
+		if (gaulois.toString().equals("Obélix")) {
+			parler("Non, Obélix Non !... Et tu le sais très bien !");
+
+		} else {
+			if (!chaudron.resterPotion()) {
+				parler("Il n’y a plus de potion !");
+			} else {
+				parler("Tiens " + gaulois.getNom() + " un peu de potion magique.");
+				chaudron.prendreLouche();
+				gaulois.boirePotion(chaudron.getForcePotion());
+			}
+		}
+	}
 }
