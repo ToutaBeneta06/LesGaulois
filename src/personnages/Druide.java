@@ -16,7 +16,7 @@ public class Druide {
 	}
 
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "« " + texte + " »");
+		System.out.println(prendreParole() + "Â« " + texte + " Â»");
 	}
 
 	private String prendreParole() {
@@ -24,17 +24,17 @@ public class Druide {
 	}
 
 	public void fabriquerPotion(int quantite, int forcePotion) {
-		parler("J'ai concocté " + nbDoses + " doses de potion magique. Elle a une force de " + forcePotion + ".");
-		chaudron.remplirChaudron(nbDoses, forcePotion);
+		parler("J'ai concoctÃ© " + quantite + " doses de potion magique. Elle a une force de " + forcePotion + ".");
+		chaudron.remplirChaudron(quantite, forcePotion);
 	}
 
 	public void boosterGaulois(Gaulois gaulois) {
-		if (gaulois.toString().equals("Obélix")) {
-			parler("Non, Obélix Non !... Et tu le sais très bien !");
+		if (gaulois.toString().equals("ObÃ©lix")) {
+			parler("Non, ObÃ©lix Non !... Et tu le sais trÃ¨s bien !");
 
 		} else {
 			if (!chaudron.resterPotion()) {
-				parler("Il n’y a plus de potion !");
+				parler("Il nâ€™y a plus de potion !");
 			} else {
 				parler("Tiens " + gaulois.getNom() + " un peu de potion magique.");
 				chaudron.prendreLouche();
@@ -42,4 +42,5 @@ public class Druide {
 			}
 		}
 	}
+
 }
