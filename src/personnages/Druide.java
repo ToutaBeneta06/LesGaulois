@@ -29,18 +29,21 @@ public class Druide {
 	}
 
 	public void boosterGaulois(Gaulois gaulois) {
-		if (gaulois.toString().equals("Obélix")) {
-			parler("Non, Obélix Non !... Et tu le sais très bien !");
-
-		} else {
-			if (!chaudron.resterPotion()) {
-				parler("Il n’y a plus de potion !");
-			} else {
-				parler("Tiens " + gaulois.getNom() + " un peu de potion magique.");
-				chaudron.prendreLouche();
-				gaulois.boirePotion(chaudron.getForcePotion());
-			}
-		}
-	}
+	    boolean contenuPotion = chaudron.resterPotion();
+		 String nomGaulois = gaulois.getNom();
+		if(contenuPotion) {
+			if (nomGaulois.equals("Obélix")) {
+                parler("Non, " + nomGaulois + " ! Non ! Et tu le sais bien !");
+            } else {
+                int forcePotion = chaudron.prendreLouche();
+                gaulois.boirePotion(forcePotion);
+                parler("Tiens " + nomGaulois + ", un peu de potion magique.");
+            }
+        } else {
+            parler("Désolé " + nomGaulois + ", il n’y a plus une seule goutte de potion.");
+        }
+    }
+}
 
 }
+
