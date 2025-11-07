@@ -1,1 +1,69 @@
+package tableaux;
+
+public class TestTableau {
+
+    public static void main(String[] args) {
+
+        // 2.1 Déclaration de tableau
+        int[] tableauEntiers;
+        String[] tableauChaines;
+
+        // System.out.println(tableauEntiers); // Erreur : le tableau n’est pas encore créé
+
+        // 2.2 Création du tableau
+        int[] tableauEntiers2 = { 5, 7, 2, 5, 3 }; // Tableau rempli directement
+        String[] tableauChaines2 = new String[5];  // Tableau vide (5 cases null)
+
+        // Affichage du premier tableau
+        System.out.println("Affichage brut d’un tableau d’entiers : " + tableauEntiers2);
+        System.out.println("Affichage brut d’un tableau de chaînes : " + tableauChaines2);
+
+        // 2.3 Affichage d’un tableau
+
+        // a) Parcours d’un tableau plein avec foreach
+        System.out.println("\n--- Parcours d’un tableau plein (foreach) ---");
+        for (int entier : tableauEntiers2) {
+            System.out.print(entier + " ");
+        }
+
+        // b) Parcours d’un tableau plein avec une boucle for classique
+        System.out.println("\n\n--- Parcours d’un tableau plein (for avec indice) ---");
+        for (int i = 0; i < tableauEntiers2.length; i++) {
+            int entier = tableauEntiers2[i];
+            System.out.print(entier);
+            if (i < tableauEntiers2.length - 1) {
+                System.out.print(", ");
+            }
+        }
+
+        // Affichage du deuxième tableau (vide)
+        System.out.println("\n\n--- Parcours du tableau de chaînes vide ---");
+        for (String chaine : tableauChaines2) {
+            System.out.print(chaine + " "); // affichera : null null null null null
+        }
+
+        // b) Remplissage progressif du tableau de chaînes
+        System.out.println("\n\n--- Tableau rempli progressivement ---");
+        int nbChaines = 0;
+        tableauChaines2[nbChaines] = "Hello";
+        nbChaines++;
+        tableauChaines2[nbChaines] = "World";
+        nbChaines++;
+
+        for (int i = 0; i < nbChaines; i++) {
+            System.out.print(tableauChaines2[i] + " ");
+        }
+
+        // c) Remplissage sans ordre (case 4)
+        System.out.println("\n\n--- Tableau rempli sans ordre spécifique ---");
+        tableauChaines2[3] = "!";
+        for (String chaine : tableauChaines2) {
+            if (chaine != null) {
+                System.out.print(chaine + " ");
+            }
+        }
+
+        System.out.println("\n\n--- Fin du programme TestTableau ---");
+    }
+}
 
